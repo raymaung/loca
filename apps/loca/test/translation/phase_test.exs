@@ -1,10 +1,10 @@
-defmodule Loca.Translation.PhaseTest do
+defmodule Loca.TranslationService.PhaseTest do
   use ExUnit.Case
 
-  alias Loca.Translation.Phase
+  # alias Loca.TranslationService.Phase
 
   test "attributes" do
-    p = %Phase{language: "english", text: "Hello"}
+    p = %Loca.TranslationService.Phase{language: "english", text: "Hello"}
     assert p.language == "english"
     assert p.text == "Hello"
   end

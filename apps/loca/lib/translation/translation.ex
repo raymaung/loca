@@ -1,12 +1,12 @@
-defmodule Loca.Translation do
+defmodule Loca.TranslationService do
   @moduledoc """
-  The boundary for the Translation system.
+  The boundary for the TranslationService system.
   """
 
   import Ecto.{Query, Changeset}, warn: false
   alias Loca.Repo
 
-  alias Loca.Translation.Phase
+  alias Loca.TranslationService.Phase
 
   @doc """
   Submit a phase to be translated

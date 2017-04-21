@@ -1,4 +1,4 @@
-defmodule Loca.Translation.Phase do
+defmodule Loca.TranslationService.Phase do
   use Ecto.Schema
 
   schema "phases" do
