@@ -1,4 +1,4 @@
-defmodule Loca.TranslationTest do
+defmodule Loca.TranslationPersistentTest do
   use Loca.DataCase
 
   alias Loca.Translation
