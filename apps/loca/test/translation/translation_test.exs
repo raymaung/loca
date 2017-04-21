@@ -1,10 +1,9 @@
-defmodule Loca.TranslationManagerTest do
+defmodule Loca.TranslationTest do
   use ExUnit.Case
 
   use Loca.DataCase
 
   alias Loca.Translation
-  alias Loca.Translation.Phase
 
   test "submit phase" do
     assert {:ok, phase} = Translation.submit_phase(%{language: "eng", text: "hello"})
