@@ -8,6 +8,18 @@ defmodule Loca.Translation do
 
   alias Loca.Translation.Phase
 
+  @doc """
+  Submit a phase to be translated
+
+  ## Examples
+
+      iex> submit_phase(%{language: "english", text: "Hello"})
+      {:ok, %Phase{language: "english", "Hello"}}
+
+      iex> submit_phase(%{language: "", text: ""})
+      {:error, %Ecto.Changeset{}}
+
+  """
   def submit_phase(attrs \\ %{}) do
     %Phase{}
     |> phase_changeset(attrs)
@@ -43,23 +55,6 @@ defmodule Loca.Translation do
   """
   def get_phase!(id), do: Repo.get!(Phase, id)
 
-  @doc """
-  Creates a phase.
-
-  ## Examples
-
-      iex> create_phase(%{field: value})
-      {:ok, %Phase{}}
-
-      iex> create_phase(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_phase(attrs \\ %{}) do
-    %Phase{}
-    |> phase_changeset(attrs)
-    |> Repo.insert()
-  end
 
   @doc """
   Updates a phase.

@@ -9,7 +9,7 @@ defmodule Loca.TranslationPersistentTest do
   @invalid_attrs %{language: nil}
 
   def fixture(:phase, attrs \\ @create_attrs) do
-    {:ok, phase} = Translation.create_phase(attrs)
+    {:ok, phase} = Translation.submit_phase(attrs)
     phase
   end
 
@@ -21,14 +21,6 @@ defmodule Loca.TranslationPersistentTest do
   test "get_phase! returns the phase with given id" do
     phase = fixture(:phase)
     assert Translation.get_phase!(phase.id) == phase
-  end
-
-  test "create_phase/1 with valid data creates a phase" do
-    assert {:ok, %Phase{}} = Translation.create_phase(@create_attrs)
-  end
-
-  test "create_phase/1 with invalid data returns error changeset" do
-    assert {:error, %Ecto.Changeset{}} = Translation.create_phase(@invalid_attrs)
   end
 
   test "update_phase/2 with valid data updates the phase" do
