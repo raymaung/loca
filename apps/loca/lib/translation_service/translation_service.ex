@@ -7,6 +7,7 @@ defmodule Loca.TranslationService do
   alias Loca.Repo
 
   alias Loca.TranslationService.Phase
+  alias Loca.TranslationService.Translation
 
   @doc """
   Submit a phase to be translated
@@ -37,6 +38,12 @@ defmodule Loca.TranslationService do
   """
   def list_phases do
     Repo.all(Phase)
+  end
+
+  def submit_translation(attrs \\ %{}) do
+    %Translation{}
+    |> translation_changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """
@@ -107,5 +114,11 @@ defmodule Loca.TranslationService do
     phase
     |> cast(attrs, [:language, :text])
     |> validate_required([:language, :text])
+  end
+
+  def translation_changeset(%Translation{} = translation, attrs) do
+    translation
+    |> cast(attrs, [:phase_id, :language, :text])
+    |> validate_required([:phase_id, :language, :text])
   end
 end
