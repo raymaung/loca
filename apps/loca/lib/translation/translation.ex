@@ -8,6 +8,12 @@ defmodule Loca.Translation do
 
   alias Loca.Translation.Phase
 
+  def submit_phase(attrs \\ %{}) do
+    %Phase{}
+    |> phase_changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Returns the list of phases.
 
