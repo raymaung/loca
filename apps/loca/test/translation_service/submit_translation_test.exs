@@ -22,7 +22,6 @@ defmodule Loca.TranslationService.SubmitTranslationTest do
     assert translation.phase_id == phase.id
   end
 
-  @tag wip: true
   test "submit_translation/2 required fields" do
     phase = fixture(:phase)
     assert {:error, e} = TranslationService.submit_translation(%{
