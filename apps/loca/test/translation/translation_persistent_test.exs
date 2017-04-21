@@ -13,11 +13,6 @@ defmodule Loca.TranslationPersistentTest do
     phase
   end
 
-  test "list_phases/1 returns all phases" do
-    phase = fixture(:phase)
-    assert Translation.list_phases() == [phase]
-  end
-
   test "get_phase! returns the phase with given id" do
     phase = fixture(:phase)
     assert Translation.get_phase!(phase.id) == phase
