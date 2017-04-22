@@ -22,7 +22,7 @@ defmodule Loca.TranslationService do
     |> Repo.insert()
   end
 
-  def get_phase_with_translations(phase_id) do
+  def get_phase(phase_id) do
     Repo.get(Phase, phase_id)
     |> Repo.preload([:translations])
   end

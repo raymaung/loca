@@ -1,4 +1,4 @@
-defmodule Loca.TranslationService.GetPhaseWithTranslationsTest do
+defmodule Loca.TranslationService.GetPhaseTest do
   use ExUnit.Case
 
   use Loca.DataCase
@@ -19,12 +19,12 @@ defmodule Loca.TranslationService.GetPhaseWithTranslationsTest do
     translation
   end
 
-  test "get_phase_with_translations/1" do
+  test "get_phase/1 includes translations" do
     phase = fixture(:phase)
     translation1 = fixture(:translation, phase)
     translation2 = fixture(:translation, phase)
 
-    p = TranslationService.get_phase_with_translations(phase.id)
+    p = TranslationService.get_phase(phase.id)
     assert p.translations |> Enum.count == 2
   end
 
