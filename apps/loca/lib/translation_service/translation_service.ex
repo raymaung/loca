@@ -1,7 +1,4 @@
 defmodule Loca.TranslationService do
-  @moduledoc """
-  The boundary for the TranslationService system.
-  """
 
   import Ecto.{Query, Changeset}, warn: false
   alias Loca.Repo
@@ -9,33 +6,12 @@ defmodule Loca.TranslationService do
   alias Loca.TranslationService.Phase
   alias Loca.TranslationService.Translation
 
-  @doc """
-  Submit a phase to be translated
-
-  ## Examples
-
-      iex> submit_phase(%{language: "english", text: "Hello"})
-      {:ok, %Phase{language: "english", "Hello"}}
-
-      iex> submit_phase(%{language: "", text: ""})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def submit_phase(attrs \\ %{}) do
     %Phase{}
     |> phase_changeset(attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Returns the list of phases.
-
-  ## Examples
-
-      iex> list_phases()
-      [%Phase{}, ...]
-
-  """
   def list_phases do
     Repo.all(Phase)
   end
@@ -50,6 +26,24 @@ defmodule Loca.TranslationService do
     Repo.get(Phase, phase_id)
     |> Repo.preload([:translations])
   end
+
+  defp phase_changeset(%Phase{} = phase, attrs) do
+    phase
+    |> cast(attrs, [:language, :text])
+    |> validate_required([:language, :text])
+  end
+
+  defp translation_changeset(%Translation{} = translation, attrs) do
+    translation
+    |> cast(attrs, [:phase_id, :language, :text])
+    |> validate_required([:phase_id, :language, :text])
+  end
+
+
+
+
+
+  ## Generated Code
 
   @doc """
   Gets a single phase.
@@ -115,15 +109,4 @@ defmodule Loca.TranslationService do
     phase_changeset(phase, %{})
   end
 
-  defp phase_changeset(%Phase{} = phase, attrs) do
-    phase
-    |> cast(attrs, [:language, :text])
-    |> validate_required([:language, :text])
-  end
-
-  def translation_changeset(%Translation{} = translation, attrs) do
-    translation
-    |> cast(attrs, [:phase_id, :language, :text])
-    |> validate_required([:phase_id, :language, :text])
-  end
 end
